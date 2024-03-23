@@ -1,0 +1,16 @@
+receivers:
+  prometheusremotewrite:
+
+processors:
+  batch:
+
+exporters:
+  otlp:
+    endpoint: localhost:4317
+
+service:
+  pipelines:
+    metrics:
+      receivers: [prometheusremotewrite]
+      processors: [batch]
+      exporters: [otlp]

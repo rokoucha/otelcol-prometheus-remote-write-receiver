@@ -1,0 +1,15 @@
+dist:
+  name: otelcol-prometheus-remote-write-receiver
+  description: https://github.com/open-telemetry/opentelemetry-collector-contrib/pull/14752
+  output_path: ./
+  otelcol_version: 0.96.0
+
+exporters:
+  - gomod: go.opentelemetry.io/collector/exporter/otlpexporter v0.96.0
+
+processors:
+  - gomod: go.opentelemetry.io/collector/processor/batchprocessor v0.96.0
+
+receivers:
+  - gomod: "github.com/rokoucha/otelcol-prometheus-remote-write-receiver/prometheusremotewritereceiver v0.0.0"
+    path: ./prometheusremotewritereceiver
