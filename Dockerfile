@@ -11,7 +11,7 @@ COPY ./builder-config.yaml /app/builder-config.yaml
 
 RUN ./ocb --config ./builder-config.yaml
 
-FROM scratch
+FROM docker.io/library/debian:bookworm-slim
 
 WORKDIR /app
 
