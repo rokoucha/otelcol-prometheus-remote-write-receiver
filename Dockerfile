@@ -17,4 +17,4 @@ WORKDIR /app
 
 COPY --from=builder /app/otelcol-prometheus-remote-write-receiver /app/otelcol-prometheus-remote-write-receiver
 
-CMD ["/app/otelcol-prometheus-remote-write-receiver"]
+CMD ["/app/otelcol-prometheus-remote-write-receiver", "--config", "/app/config.yaml"]
