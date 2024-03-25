@@ -13,6 +13,9 @@ RUN ./ocb --config ./builder-config.yaml
 
 FROM docker.io/library/debian:bookworm-slim
 
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends ca-certificates
+
 WORKDIR /app
 
 COPY --from=builder /app/otelcol-prometheus-remote-write-receiver /app/otelcol-prometheus-remote-write-receiver
