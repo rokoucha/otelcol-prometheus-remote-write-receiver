@@ -68,19 +68,19 @@ func NewReceiver(settings receiver.CreateSettings, config *Config, consumer cons
 }
 
 // Start - remote write
-func (r *PrometheusRemoteWriteReceiver) Start(_ context.Context, host component.Host) error {
+func (r *PrometheusRemoteWriteReceiver) Start(ctx context.Context, host component.Host) error {
 	if host == nil {
 		return errors.New("nil host")
 	}
 
-	listener, err := r.config.ServerConfig.ToListener()
+	listener, err := r.config.ServerConfig.ToListener(ctx)
 	if err != nil {
 		return err
 	}
 
 	handler := http.HandlerFunc(r.handleWrite)
 
-	r.server, err = r.config.ServerConfig.ToServer(host, r.settings.TelemetrySettings, handler, confighttp.WithDecoder("snappy", func(body io.ReadCloser) (io.ReadCloser, error) { return body, nil }))
+	r.server, err = r.config.ServerConfig.ToServer(ctx, host, r.settings.TelemetrySettings, handler, confighttp.WithDecoder("snappy", func(body io.ReadCloser) (io.ReadCloser, error) { return body, nil }))
 	if err != nil {
 		return err
 	}

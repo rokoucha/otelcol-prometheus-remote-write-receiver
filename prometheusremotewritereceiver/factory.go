@@ -33,7 +33,7 @@ const (
 // NewFactory - remote write
 func NewFactory() receiver.Factory {
 	return receiver.NewFactory(
-		typeStr,
+		component.MustNewType("prometheus"),
 		createDefaultConfig,
 		receiver.WithMetrics(createMetricsReceiver, stability))
 }
