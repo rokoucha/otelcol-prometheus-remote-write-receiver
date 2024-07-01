@@ -378,6 +378,8 @@ github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatautil v0.103.0
 github.com/open-telemetry/opentelemetry-collector-contrib/pkg/pdatautil v0.103.0/go.mod h1:o8BPP4DM2SkdkPJxJOdmgxKz5DftGcuyUXgqf5MoWAw=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v0.103.0 h1:c5sOZWBMD/gyKxqwGgS6cwLdvkg6W8I3/0RZOm84xA0=
 github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v0.103.0/go.mod h1:2CG+06d3sh+O36maAs2TPAbNRXZ0zcqY2kH5pEABrzg=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.103.0 h1:Gg2j3yN2iCQYwK+464RyVvmX+QyjjdXL3JpG+6BfDAQ=
+github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.103.0/go.mod h1:4nxV+BIA4LLyjhFeuUuLlY7iza+PyySjKz4PfL44SRQ=
 github.com/opencontainers/go-digest v1.0.0 h1:apOUWs51W5PlhuyGyz9FCeeBIOUDA/6nW8Oi/yOhh5U=
 github.com/opencontainers/go-digest v1.0.0/go.mod h1:0JzlMkj0TRzQZfJkVvzbP0HBR3IKzErnv2BNG4W4MAM=
 github.com/opencontainers/image-spec v1.1.0 h1:8SG7/vwALn54lVB/0yZ/MMwhFrPYtpEHQb2IpWsCzug=

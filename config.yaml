@@ -2,8 +2,8 @@ receivers:
   prometheusremotewrite:
 
 processors:
-  attributes/service_name:
-    actions:
+  resource:
+    attributes:
       - key: service.name
         from_attribute: job
         action: insert
@@ -17,5 +17,5 @@ service:
   pipelines:
     metrics:
       receivers: [prometheusremotewrite]
-      processors: [attributes/service_name, batch]
+      processors: [resource, batch]
       exporters: [otlp]
