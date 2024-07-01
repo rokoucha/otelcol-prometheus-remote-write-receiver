@@ -32,9 +32,19 @@ var reg = regexp.MustCompile(`(\w+)_(\w+)_(\w+)\z`)
 func FromTimeSeries(tss []prompb.TimeSeries, settings Settings) (pmetric.Metrics, error) {
 	pms := pmetric.NewMetrics()
 	for _, ts := range tss {
-		empty := pms.ResourceMetrics().AppendEmpty().ScopeMetrics().AppendEmpty().Metrics().AppendEmpty()
+		r := pms.ResourceMetrics().AppendEmpty()
+		attr := r.Resource().Attributes()
+		for _, l := range ts.Labels {
+			labelName := l.Name
+			if l.Name == nameStr {
+				labelName = "key_name"
+			}
+			attr.PutStr(labelName, l.Value)
+		}
+		settings.Logger.Debug("Resource", zap.String("resource_attributes", fmt.Sprintf("%#v", attr)))
+		empty := r.ScopeMetrics().AppendEmpty().Metrics().AppendEmpty()
 		pm := pmetric.NewMetric()
-		metricName, err := finalName(ts.Labels)
+		metricName, err := finalLabel(nameStr, ts.Labels)
 		if err != nil {
 			return pms, err
 		}
@@ -94,13 +104,13 @@ func FromTimeSeries(tss []prompb.TimeSeries, settings Settings) (pmetric.Metrics
 	return pms, nil
 }
 
-func finalName(labels []prompb.Label) (ret string, err error) {
+func finalLabel(niddle string, labels []prompb.Label) (ret string, err error) {
 	for _, label := range labels {
-		if label.Name == nameStr {
+		if label.Name == niddle {
 			return label.Value, nil
 		}
 	}
-	return "", errors.New("label name not found")
+	return "", errors.New("label not found")
 }
 
 // IsValidSuffix - remote write
