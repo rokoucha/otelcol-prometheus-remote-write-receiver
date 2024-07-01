@@ -2,12 +2,18 @@ receivers:
   prometheusremotewrite:
 
 processors:
+  attributes/service_name:
+    actions:
+      - key: service.name
+        from_attribute: job
+        action: insert
+  batch:
+    timeout: 1m
   resource:
     attributes:
       - key: service.name
         from_attribute: job
         action: insert
-  batch:
 
 exporters:
   otlp:
