@@ -44,13 +44,13 @@ type PrometheusRemoteWriteReceiver struct {
 	nextConsumer  consumer.Metrics
 	obsrecv       *receiverhelper.ObsReport
 	server        *http.Server
-	settings      receiver.CreateSettings
+	settings      receiver.Settings
 	shutdownWG    sync.WaitGroup
 	timeThreshold *int64
 }
 
 // NewReceiver - remote write
-func NewReceiver(settings receiver.CreateSettings, config *Config, consumer consumer.Metrics) (*PrometheusRemoteWriteReceiver, error) {
+func NewReceiver(settings receiver.Settings, config *Config, consumer consumer.Metrics) (*PrometheusRemoteWriteReceiver, error) {
 	obsrecv, err := receiverhelper.NewObsReport(receiverhelper.ObsReportSettings{
 		ReceiverID:             settings.ID,
 		Transport:              "http",
