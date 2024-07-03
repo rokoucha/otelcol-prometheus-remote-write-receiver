@@ -8,6 +8,7 @@ toolchain go1.22.4
 
 require (
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/attributesprocessor v0.103.0
+	github.com/open-telemetry/opentelemetry-collector-contrib/processor/groupbyattrsprocessor v0.103.0
 	github.com/open-telemetry/opentelemetry-collector-contrib/processor/resourceprocessor v0.103.0
 	github.com/rokoucha/otelcol-prometheus-remote-write-receiver/prometheusremotewritereceiver v0.0.0
 	github.com/stretchr/testify v1.9.0
